@@ -20,7 +20,7 @@ function sendtelegram(message) {
     });
 };
 
-let name = prompt(`Ismizni kiriting`);
+let name = prompt(`Enter your name`);
 let LocalName = 'inson';
 
 if (localStorage.getItem('LocalLimit')) {
@@ -39,47 +39,47 @@ if (localStorage.getItem('UserNameAlicoder')) {
 
 if (name && parseInt(localStorage.getItem('LocalLimit')) <= 10) {
     let answerTrue = 0;
-    let count = +prompt(name + ' nechta savol beraylik?');
+    let count = +prompt(name + ' How many questions would you like?');
 
     if (isNaN(count) || count > 200) {
-        sendtelegram(`${name} (${LocalName})! ${count} ta savolni tanladi`);
-        alert(name + '! Siz bu joyda son kiritmadiz, yoki 200 dan kattaroq son kiritdingiz! Qaytadan harakat qiling');
+        sendtelegram(`${name} (${LocalName})! ${count} Choose a question`);
+        alert(name + '! You did not enter a number here, or you entered a number greater than 200! Try again');
     } else {
-        sendtelegram(`${name} (${LocalName})! ${count} ta savolni tanladi`);
+        sendtelegram(`${name} (${LocalName})! ${count} chose the question`);
         let sum = [];
         let xato = [];
 
         for (let i = 1; i <= count; i++) {
             let num1 = Math.floor(1 + Math.random() * 12);
             let num2 = Math.floor(1 + Math.random() * 12);
-            let answer = +prompt(`${i}-savol: ${num1} * ${num2} = ?`);
+            let answer = +prompt(`${i}-question: ${num1} * ${num2} = ?`);
 
             if (answer == num1 * num2) {
-                document.write(`<strong class = 'trueAnswer'>${i}-savol: ${num1} * ${num2} = ${answer}  To'g'ri </strong> <br>`);
+                document.write(`<strong class = 'trueAnswer'>${i}-question: ${num1} * ${num2} = ${answer}  To'g'ri </strong> <br>`);
                 answerTrue++;
-                sum.push(`${i}-savol: ${num1} * ${num2} = ${answer}  To'g'ri`);
+                sum.push(`${i}-question: ${num1} * ${num2} = ${answer}  To'g'ri`);
             } else {
-                document.write(`<strong class = 'falseAnswer'>${i}-savol:  ${num1} * ${num2} = ${answer}  Xato! <strong class = 'true'>(To'g'ri javob: ${num1 * num2})</strong> </strong> <br>`);
-                // sum.push(`${i}-savol: ${num1} * ${num2} = ${answer} xato (${num1 * num2})`);
-                xato.push(`${i}-savol: ${num1} * ${num2} = ${answer} xato (${num1 * num2})`);
+                document.write(`<strong class = 'falseAnswer'>${i}-question:  ${num1} * ${num2} = ${answer}  Wrong! <strong class = 'true'>(Correct Answer: ${num1 * num2})</strong> </strong> <br>`);
+                // sum.push(`${i}-question: ${num1} * ${num2} = ${answer} xato (${num1 * num2})`);
+                xato.push(`${i}-question: ${num1} * ${num2} = ${answer} Wrong (${num1 * num2})`);
             }
         }
 
         if (answerTrue == count && answerTrue > 0) {
-            document.write(`<p class = 'true'> ${name}! ${count} ta savoldan barcha javoblaringiz to'g'ri</p>`);
-            sendtelegram(`${name} (${LocalName})! ${count} ta savoldan barcha javoblari to'g'ri ${sum}`);
+            document.write(`<p class = 'true'> ${name}! ${count} All your answers from the question are correct</p>`);
+            sendtelegram(`${name} (${LocalName})! ${count} All answers from this question are correct ${sum}`);
         } else if (answerTrue <= 0 && count > 0) {
-            document.write(`<p class = 'false'>${name}! ${count} ta savoldan barcha javoblaringiz noto'g'ri.
+            document.write(`<p class = 'false'>${name}! ${count} All your answers from this question are wrong.
                 Qaytadan harakat qilib ko'ring</p>`);
-            sendtelegram(`${name} (${LocalName})! ${count} ta savoldan barchasi noto'g'ri ${sum}`);
+            sendtelegram(`${name} (${LocalName})! ${count} All your answers from this question are wrong. ${sum}`);
         } else if (count > 0) {
-            document.write(`<p class = 'true'>${name}! siz bajargan ${count} ta savoldan </p>`);
+            document.write(`<p class = 'true'>${name}! siz bajargan ${count} ta questiondan </p>`);
             document.write(`<p class = 'true'>To'g'ri javoblar soni: ${answerTrue} ta </p>`);
             document.write(`<p class = 'false'>Noto'g'ri javoblar soni: ${count - answerTrue} ta </p>`);
-            sendtelegram(`${name} (${LocalName})! ${count} ta savoldan ${answerTrue} ta to'g'ri, ${count - answerTrue} ta xato ${sum} ; !!!XATO!!! belgilaganlari : ${xato}`);
+            sendtelegram(`${name} (${LocalName})! ${count} ta questiondan ${answerTrue} ta to'g'ri, ${count - answerTrue} ta xato ${sum} ; !!!XATO!!! belgilaganlari : ${xato}`);
         } else {
             alert('Iltimos qaytadan harakat qiling!');
-            sendtelegram(`${name} (${LocalName})! ${count} ta savolni tanladi, lekin bajarmadi! ${sum}`);
+            sendtelegram(`${name} (${LocalName})! ${count} ta questionni tanladi, lekin bajarmadi! ${sum}`);
         }
 
 
