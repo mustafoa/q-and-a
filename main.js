@@ -86,6 +86,6 @@ if (name && parseInt(localStorage.getItem('LocalLimit')) <= 10) {
     }
 }
 else if (parseInt(localStorage.getItem('LocalLimit')) > 10) {
-    sendtelegram(`${name} (${LocalName})! Limiti tugadi`);
-    document.write(`<p class = 'false'>Xurmatli ${name}!Sizga ajratilgan limit tugadi. <br> Limitni oshirish uchun +99899 588-88-98 raqamiga telefon qiling </p>`);
+    sendtelegram(`${name} (${LocalName})! You reached your limit`);
+    document.write(`<p class = 'false'>Welcome ${name}!You have reached the limit allocated to you. To increase the limit, call +99899 588-88-98 </p>`);
 }
