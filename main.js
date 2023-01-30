@@ -57,7 +57,7 @@ if (name && parseInt(localStorage.getItem('LocalLimit')) <= 10) {
             if (answer == num1 * num2) {
                 document.write(`<strong class = 'trueAnswer'>${i}-question: ${num1} * ${num2} = ${answer}  To'g'ri </strong> <br>`);
                 answerTrue++;
-                sum.push(`${i}-question: ${num1} * ${num2} = ${answer}  To'g'ri`);
+                sum.push(`${i}-question: ${num1} * ${num2} = ${answer}  Correct`);
             } else {
                 document.write(`<strong class = 'falseAnswer'>${i}-question:  ${num1} * ${num2} = ${answer}  Wrong! <strong class = 'true'>(Correct Answer: ${num1 * num2})</strong> </strong> <br>`);
                 // sum.push(`${i}-question: ${num1} * ${num2} = ${answer} xato (${num1 * num2})`);
@@ -70,16 +70,16 @@ if (name && parseInt(localStorage.getItem('LocalLimit')) <= 10) {
             sendtelegram(`${name} (${LocalName})! ${count} All answers from this question are correct ${sum}`);
         } else if (answerTrue <= 0 && count > 0) {
             document.write(`<p class = 'false'>${name}! ${count} All your answers from this question are wrong.
-                Qaytadan harakat qilib ko'ring</p>`);
+                Please try again</p>`);
             sendtelegram(`${name} (${LocalName})! ${count} All your answers from this question are wrong. ${sum}`);
         } else if (count > 0) {
-            document.write(`<p class = 'true'>${name}! siz bajargan ${count} ta questiondan </p>`);
-            document.write(`<p class = 'true'>To'g'ri javoblar soni: ${answerTrue} ta </p>`);
-            document.write(`<p class = 'false'>Noto'g'ri javoblar soni: ${count - answerTrue} ta </p>`);
-            sendtelegram(`${name} (${LocalName})! ${count} ta questiondan ${answerTrue} ta to'g'ri, ${count - answerTrue} ta xato ${sum} ; !!!XATO!!! belgilaganlari : ${xato}`);
+            document.write(`<p class = 'true'>${name}! you have done ${count} from the question </p>`);
+            document.write(`<p class = 'true'>Number of correct answers: ${answerTrue} </p>`);
+            document.write(`<p class = 'false'>Number of wrong answers: ${count - answerTrue} </p>`);
+            sendtelegram(`${name} (${LocalName})! ${count} from the question ${answerTrue} is correct, ${count - answerTrue} error ${sum} ; !!!error!!! what they set : ${xato}`);
         } else {
-            alert('Iltimos qaytadan harakat qiling!');
-            sendtelegram(`${name} (${LocalName})! ${count} ta questionni tanladi, lekin bajarmadi! ${sum}`);
+            alert('Please try again!');
+            sendtelegram(`${name} (${LocalName})! ${count} chose the question, but did not do it! ${sum}`);
         }
 
 
